@@ -34,16 +34,9 @@ $records[] = $currentrecord;
 # missing other fields is invalid
 
 $valid = 0;
+$reqKeys = array('byr','iyr','eyr','hgt','hcl','ecl','pid');
 foreach ($records as $i => $r) {
-    if (
-        array_key_exists('byr',$r) &&
-        array_key_exists('iyr',$r) &&
-        array_key_exists('eyr',$r) &&
-        array_key_exists('hgt',$r) &&
-        array_key_exists('hcl',$r) &&
-        array_key_exists('ecl',$r) &&
-        array_key_exists('pid',$r)
-    )
+    if (count(array_intersect($reqKeys, array_keys($r))) == 7)
         $valid++;
 
     var_dump($r);
